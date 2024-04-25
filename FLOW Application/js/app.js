@@ -128,7 +128,7 @@ document.addEventListener('DOMContentLoaded', function() {
       if (conditionsMet && passwordsMatch) {
       
           console.log('Form is valid and ready to be submitted');
-          form.submit(); 
+        //  form.submit(); 
       } else {
           console.log('Form has validation errors');
     
