@@ -1,0 +1,589 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Oswald:wght@200..700&family=Questrial&family=Staatliches&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Bebas+Neue&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Bebas+Neue&family=Bree+Serif&family=Koulen&display=swap');
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+
+
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  background-color: #ffffff; /* Background color of the website */
+  color: #333; /* Primary text color */
+  line-height: 1.6;
+}
+
+
+.cookie-consent-popup {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 10%; /* Or any value you prefer for vertical positioning */
+    left: 50%;
+    transform: translateX(-50%); /* Centers the div horizontally */
+    width: auto; /* Or a specific width if you want */
+    max-width: 600px; /* Adjust to your preference */
+    background: rgba(0, 0, 0, 0.8); /* Semi-transparent black background */
+    color: white;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.5); /* Optional: adds a shadow for better visibility */
+    z-index: 10000; /* High value to ensure it's on top of other elements */
+    border-radius: 8px; /* Rounded corners */
+  }
+  
+  .cookie-consent-content {
+    text-align: center;
+  }
+  
+  .cookie-consent-buttons {
+    display: flex;
+    justify-content: center; /* Center the buttons within the popup */
+    gap: 10px; /* Spacing between buttons */
+    margin-top: 20px;
+  }
+  
+  .cookie-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover effects */
+
+  }
+  
+  .decline {
+    background: #000000; /* Red background for decline button */
+    color: white;
+  }
+  
+  .accept {
+    background: #000000; /* Green background for accept button */
+    color: white;
+  }
+  
+  
+
+.decline:hover {
+  background-color: rgb(189, 82, 82); /* Changes the background to white on hover */
+  color: black; /* Changes the text to black on hover */
+}
+
+.accept:hover {
+    background-color: rgb(111, 154, 120); /* Changes the background to white on hover */
+    color: black; /* Changes the text to black on hover */
+}
+  
+
+header {
+  background-image: url('/media/dan-gold-xh1BLBZNIE8-unsplash.jpg');
+  background-size: cover;
+  padding: 20px 10%; /* Header padding */
+  color: white; /* Header text color */
+  height: 850px;
+  display: flex;
+  flex-direction: column; 
+}
+
+header h1 {
+    font-size: 150px;
+    text-align: left;
+    font-family: "Bebas Neue", sans-serif;
+    font-weight: 1000;
+    font-style: normal;
+    margin-top: 130px;
+    color: black;
+    line-height: 0.8; /* Reduce the line height to decrease the gap */
+  }
+  
+.title-middle {
+    display: block; 
+    text-align: left;
+    margin-bottom: -70px;
+    
+}
+  .title-main {
+    /* If you want to tweak 'The Future' separately */
+    display: block; /* Treat this as block to influence line break */
+    margin-bottom: -80px; /* Adjust this value to reduce the gap */
+  }
+  
+  .title-sub {
+  
+    display: block; /* Ensures 'OF E-BANKING' starts on a new line */
+    text-align: left; /* Aligns 'OF E-BANKING' to the right */
+    padding-right: 9%; /* Adjust this value to move 'OF E-BANKING' further to the right if needed */
+  }
+  
+
+#logo img {
+	width: 180px;
+	height: auto;
+	margin-right: 0;
+    margin-left: -100px;
+	margin-top: 15px;
+    display: block; /* Remove default image inline space */
+    max-height: 50px;
+    align-items: left;
+  
+}
+
+
+/* Styles for the navigation menu */
+nav {
+    display: flex; /* Use Flexbox for layout */
+    align-items: center; /* Align items vertically in the center */
+    justify-content: space-between; /* Distribute space between nav items */
+    padding: 0px;/* Add padding on the sides of the nav */
+    
+  }
+  
+  /* Removing default styles */
+  .menu {
+    list-style: none; /* Remove default list styling */
+    display: flex; /* Use Flexbox for the menu items */
+    gap: 14px; /* Adjust the gap between menu items */
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+    margin-right: 250px;
+
+  }
+  
+  /* Styles for each menu item */
+  .menu li {
+    margin: 0 10px; /* Adjust as needed for spacing */
+  }
+  
+  /* Styles for each link within the menu items */
+  .menu li a {
+    text-decoration: none;
+    font-weight: 600;
+    padding: 10px 20px; /* Adjust as needed for spacing */
+    color: #000000; /* Adjust color code as per your design */
+    transition: all 0.3s; /* Smooth transition for hover effects */
+  }
+  
+  /* Adding hover effect */
+  .menu li a:hover {
+    background-color: rgba(171, 196, 176, 0.775); /* Replace with the color for hover */
+    border-color: #bebaba;
+    border-radius: 20px; /* Replace with the border color for hover */
+  }
+  
+
+#hamburger {
+  display: none; /* Hide hamburger menu on larger screens */
+}
+
+
+
+.title-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Distributes space evenly */
+    width: 100%; /* Ensures the container spans the full width */
+  }
+  
+  .title-container h2 {
+    padding: 10px; /* Adds some padding to the left and right of the title */
+    flex-shrink: 0; /* Prevents the title from shrinking */
+    font-size: 100px;
+    color: #32323E;
+
+  
+  }
+  
+  .side-line {
+    height: 2px; /* Height of the line, acting as the line thickness */
+    background-color: #BFEECF; /* Color of the line */
+    width: 100%; /* Forces the line to fill the width */
+  }
+  
+
+    
+ #services .side-line {
+    background-color: #A8C7D9;
+
+  }
+
+
+  #about p {
+    font-size: 18px;
+  }
+
+section {
+  padding: 20px 5%;
+}
+
+section h2 {
+  font-size: 1.8em;
+  color: #004d40; /* Section title color */
+  margin-bottom: 20px;
+  font-family: "Bebas Neue", sans-serif;
+  font-weight: 900;
+}
+
+section p {
+  margin-bottom: 20px;
+}
+
+#about {
+
+height: 600px;
+
+}
+
+#services {
+    background-size: contain;
+    background-image: url('/media/servicesbckg.png');
+}
+
+
+  /* Style for the subtitles in each service block */
+  #services > div h3 {
+    font-size: 2em; 
+    margin-top: 30px; 
+    margin-bottom: 15px;          
+    color: #000; 
+    font-family: "Staatliches", sans-serif;
+    font-style: italic;
+    font-weight: 600;
+    position: relative;
+
+  }
+  
+
+  #services > div h3::before {
+    content: "";
+    position: absolute;
+    bottom: -10px; /* Adjust this value as needed to position the line */
+    width: 95%;
+    left: 0;
+    height: 5px;
+    border-radius: 2px;
+    background: linear-gradient(to right, #cec3a0, #00bcd4);
+  }
+  
+
+
+
+  
+  .left-aligned, .right-aligned {
+    width: 48%;
+    margin-bottom: 20px; 
+  }
+
+
+  
+  @media (max-width: 768px) {
+    /* Adjust the layout for smaller screens */
+    .left-aligned, .right-aligned {
+      width: 100%;
+    }
+  }
+  
+  /* Style for paragraphs */
+  #services p {
+    font-size: 1em;
+    margin-bottom: 15px; /* Adds space below paragraphs */
+    line-height: 1.6; /* Adjusts the line height for readability */
+    font-family: "Oswald", sans-serif;
+    font-weight: 300;
+  }
+
+  #services > .details {
+    background-size: contain;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; 
+   
+  }
+  
+  /* Additional individual service block styles */
+  #services > .details > div {
+    background-color: inherit; /* White background for service blocks */
+    
+    margin-bottom: 20px; /* Adds space between service blocks */
+    border-radius: 5px; /* Optional: adds rounded corners to the service blocks */
+  }
+  
+  /* You can also add media queries to ensure responsiveness */
+  @media (max-width: 768px) {
+    .title-container {
+      flex-direction: column;
+    }
+    .side-line {
+      width: 50%; /* Adjusts the width of the lines on smaller screens */
+      flex-grow: 0;
+    }
+  }
+  
+  /* If you want to remove the lines for smaller screens */
+  @media (max-width: 768px) {
+    .side-line {
+      display: none;
+    }
+  }
+
+  
+
+  #register {
+    background-color: inherit; /* Inherits background color from parent elements */
+    padding: 50px 0; /* Adds padding above and below the register box */
+    text-align: center; /* Centers text */
+  }
+  
+
+  #register div {
+    max-width: 800px; /* Max width for the content container */
+    margin: 0 auto; /* Centers the div in the section */
+    padding: 20px;
+    background-color: inherit; /* Set a solid background color for the content box */
+    position: relative; /* Needed for the pseudo-element to position correctly */
+    z-index: 1; /* Ensure that the content is above the pseudo-element */
+    border-radius: 5px; /* If you have rounded corners */
+    
+  }
+  
+  .module-border-wrap {
+    max-width: 800px; /* Sets the maximum width of the register box */
+    margin: 0 auto; /* Centers the register box horizontally */
+    position: relative; /* Needed for absolute positioning of child elements */
+    border-radius: 8px; /* Rounds the corners of the gradient background */
+    border: solid 9px transparent; /* Prepares for border image but makes it transparent initially */
+    border-image: linear-gradient(to bottom, #9E88C3, #C5DCE1 , #B9DDC1) 30; /* Applies the gradient to the border */
+    overflow: hidden; /* Ensures everything is contained within the rounded corners */
+  }
+  
+  .module {
+    background-color: inherit; /* Inherits background color from .module-border-wrap */
+    padding: 20px; /* Padding within the content box */
+    border-radius: 5px; /* Rounds the corners of the content box */
+    position: relative; /* Ensures that this box is positioned in relation to its parent */
+  }
+  
+  
+  #register h2 {
+    color: #000000; /* Color for the heading */
+    font-size: 4rem; /* Large font size for the heading */
+    margin-bottom: 20px; /* Space below the heading */
+  }
+
+  #register p {
+    color: #333333; /* Adjust text color as needed */
+    font-size: 1.2rem; /* Adjust font size as needed */
+    margin-bottom: 30px; /* Space below the paragraph */
+  }
+
+  #register button {
+    background-color: #000000; /* Button background color */
+    color: #FFFFFF; /* Button text color */
+    border: 1px solid gray;
+    border-radius: 10%;
+    font-style: bold;
+    padding: 15px 30px; /* Button padding */
+    font-size: 1rem; /* Button text size */
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s; 
+  }
+
+
+  /* Styles for h2, p, and button elements remain the same */
+  
+  #register button:hover {
+    background-color: #ffffff; /* Button background changes to white on hover */
+    color: #000000; /* Button text color changes to black on hover */
+    border: 1.5px solid black;
+    font-style: bold;
+  }
+  
+
+  footer {
+    background-size: cover; 
+    background-repeat: no-repeat; /* Ensures the image doesn't repeat */
+    background-position: center; /* Centers the background image in the footer */
+    height: 350px; /* Adjust if you want a specific height or leave as 'auto' to encompass content */
+    background-image: url("/media/footerbckg.png");
+    color: rgb(0, 0, 0); /* Adjust the text color as needed */
+    padding: 20px 10%; /* Provides padding inside the footer */
+    display: flex;
+    font-family: "Bree Serif", serif;
+    font-weight: 400;
+    margin-top: 100px;
+    align-items: center; /* Vertically centers the items in the footer */
+    justify-content: space-between; /* Places content on either end of the footer */
+  }
+  
+  footer .left-section,
+  footer .right-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center items in case of uneven content heights */
+  }
+  
+  footer .left-section a,
+  footer .right-section a {
+    color: rgb(55, 53, 141); /* Ensure this color is visible against your footer background */
+    text-decoration: underline;
+    margin-bottom: 8px; /* Spacing between links */
+  }
+
+  .right-section p {
+    margin-top: 70px;
+    font-size: 18px;
+  }
+  
+
+.footer-title {
+    font-size: 60px;
+    text-align: left;
+    margin-bottom: 30px;
+}
+
+
+footer .social-icons {
+    display: flex; /* Aligns children in a row */
+    justify-content: start; /* Aligns children at the start of the container */
+    gap: 10px; /* Adjust the gap between the icons as necessary */
+  }
+  
+  footer .social-icons .icon {
+    width: 30px; /* Represents the width of the icon */
+    height: 30px; /* Represents the height of the icon */
+    background-color: #000; 
+    border-radius: 15%;
+    margin-top: 40px;
+  }
+
+  /* If you have a logo within the footer, it might need additional styling */
+  footer #logo {
+    display: flex; /* Align the logo properly within the footer */
+    align-items: center; /* Center it vertically */
+
+  }
+  
+  footer #logo img {
+    max-height: 80px; /* Adjust according to the size of your logo */
+    width: auto; /* Maintain the aspect ratio */
+    position:absolute;
+    right: 0px;
+    bottom: -2400px 
+  }
+  
+  /* Add any additional hover effects for links */
+  footer a:hover {
+    text-decoration: underline; /* Example hover effect */
+  }
+  
+  /* Additional responsive styles as needed */
+  @media (max-width: 768px) {
+    footer {
+      flex-direction: column;
+      align-items: flex-start; /* Aligns items to the start of the footer on small screens */
+    }
+  
+    footer .left-section,
+    footer .right-section {
+      width: 100%; /* Allows these sections to fill the footer on small screens */
+    }
+  
+    footer #logo {
+      order: -1; /* Moves the logo to the top on small screens */
+      width: 100%; /* Full width for the logo container */
+      justify-content: center; /* Center the logo horizontally */
+      margin-bottom: 20px; /* Spacing below the logo */
+    }
+
+    footer .social-icons {
+        justify-content: center; /* Centers icons on small screens */
+      }
+  }
+
+
+  /* Login Popup CSS */
+.login-popup {
+  display: none; /* Hidden by default */
+  position: fixed;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  width: 300px; /* Width of the popup */
+  background-color: #adbdb7;
+  opacity: 10;
+
+  box-shadow: -5px 0 15px rgba(0, 0, 0, 0.5);
+  z-index: 100; /* Make sure it's above everything */
+  overflow: auto; /* In case the content overflows */
+  padding: 20px;
+}
+
+/* Close button */
+.login-popup .close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.login-content {
+  margin: 20px;
+}
+
+.login-popup h2 {
+  text-align: center;
+  font-size: 35px;
+  font-family: "Bebas Neue", sans-serif;
+  font-weight: 400;
+  font-style: bold;
+}
+
+.login-popup label {
+  display: block;
+}
+
+.login-popup input[type="email"],
+.login-popup input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+ 
+  border: 1px solid black;
+}
+
+.login-popup .forgot-password {
+  display: block;
+  text-align: center;
+  margin: 10px 0;
+}
+
+.login-popup button {
+  width: 100%;
+  padding: 10px;
+  background-color: #000000;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.login-popup button:hover {
+  background-color: #ffffff;
+  color: black;
+  border: 2px solid black;
+}
+
+#loginForm{
+
+  margin-top: 30px;
+  font-family: 'Open sans' sans-serif;
+  font-style: bold;
+  font-weight: 400;
+}
