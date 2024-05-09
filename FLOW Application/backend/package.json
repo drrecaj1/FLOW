@@ -2,9 +2,12 @@
   "name": "flow-application",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
+    "start": "nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
   },
   "keywords": [],
   "author": "",
@@ -12,6 +15,8 @@
   "dependencies": {
     "body-parser": "^1.20.2",
     "express": "^4.19.2",
-    "geoip-lite": "^1.4.10"
+    "geoip-lite": "^1.4.10",
+    "jsonwebtoken": "^9.0.2",
+    "request-ip": "^3.3.0"
   }
 }
