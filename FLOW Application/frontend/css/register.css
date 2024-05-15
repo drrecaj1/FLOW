@@ -76,8 +76,8 @@ label[for="terms"], label[for="marketing"]  {
 
 .steps {
     display: flex;
-    justify-content: space-around; /* Evenly space out the steps */
-    background-color: #D7EAEE; /* Light gray background as seen in the image */
+    justify-content: space-around; 
+    background-color: #D7EAEE; 
     padding: 0; 
     margin-top: 20px;
     text-align: center;
@@ -89,18 +89,18 @@ label[for="terms"], label[for="marketing"]  {
   
   
 .steps .step {
-    flex: 1; /* Each step takes equal width */
-    font-size: 1.3em; /* Larger font size for steps */
-    padding: 15px 5px; /* Padding for each step */
+    flex: 1; 
+    font-size: 1.3em; 
+    padding: 15px 5px; 
     border-top-right-radius:25px; 
-    border-bottom-right-radius:25px; /* Rounded corners for each step */
-    color: #8F8F8F; /* Gray text color */
-    position: relative; /* For pseudo-elements positioning */
+    border-bottom-right-radius:25px; 
+    color: #8F8F8F; 
+    position: relative; 
   }
   
   /* Highlight the active step */
  .steps .step.active {
-    color: #313131; /* Active step has black text */
+    color: #313131;
     font-weight: bold;
     background-color: #B8D8C7;
   }
@@ -112,8 +112,8 @@ label[for="terms"], label[for="marketing"]  {
     bottom: 0;
     left: 0;
     right: 0;
-    height: max; /* Height of the bar */
-    background-color: #4CAF50; /* Green background color */
+    height: max; 
+    background-color: #4CAF50; 
     border-radius: 2px;
   }
 
@@ -121,31 +121,31 @@ label[for="terms"], label[for="marketing"]  {
 
 /* Pseudo-element for the numbers */
 .step::before {
-    content: attr(data-step); /* Use a data attribute to hold the number */
+    content: attr(data-step); 
     position: absolute;
     font-size: 17px;
-    top: 50%; /* Position the circle in the middle vertically */
-    transform: translateY(-50%); /* Center the circle with the text */
-    left: 100px; /* Position the circle to the left of the text */
-    width: 25px; /* Size of the circle */
-    height: 25px; /* Size of the circle */
-    background-color: #D3E1E4; /* Circle background color */
-    color: white; /* Text color */
-    border-radius: 50%; /* Make it round */
+    top: 50%; 
+    transform: translateY(-50%); 
+    left: 100px; 
+    width: 25px; 
+    height: 25px; 
+    background-color: #D3E1E4; 
+    color: white; 
+    border-radius: 50%; 
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-right: 10px; /* Space between the number circle and text */
+    margin-right: 10px; 
   }
   /* Add a class for the active step to change its styles */
   .step.active::before {
-    background-color: #D7EAEE; /* Active step circle background color */
+    background-color: #D7EAEE; 
   }
 
   
   /* Adjust .next-step if needed for the button inside the form */
 .next-step {
-    background-color: #9D9D9D; /* Green background */
+    background-color: #9D9D9D; 
     color: rgb(0, 0, 0);
     border: 1px solid black;
     padding: 10px 20px;
@@ -154,7 +154,7 @@ label[for="terms"], label[for="marketing"]  {
     width: 200px;
     border-radius: 5px;
     cursor: pointer;
-    font-weight: bold; /* Bold text for the button */
+    font-weight: bold;
     font-size: 1em;
     justify-content: center;
   }
@@ -170,16 +170,16 @@ label[for="terms"], label[for="marketing"]  {
 
  /* The Modal (background) */
 .modal {
-    display: flex; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
+    display: flex; 
+    position: fixed; 
+    z-index: 1; 
     left: 0;
     top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgb(0,0,0); 
+    background-color: rgba(0,0,0,0.4); 
   }
   
 
@@ -227,7 +227,7 @@ input.is-valid {
     background-color: #fefefe;
     padding: 20px;
     border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
+    width: 80%; 
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   }
   
@@ -251,4 +251,5 @@ input.is-valid {
     display: none;
   }
   
+
 
