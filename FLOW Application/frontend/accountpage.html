@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/account.css">
+    <title>Account Settings</title>
+</head>
+<body>
+
+
+<nav role="navigation" class="sidebar">
+    <ul class="sidebar-icons">
+        <li><a href="index.html"><img src="media/homelogo.png" alt="Home"></a></li>
+        <li><a href="#profile"><img src="media/profilelogo.png" alt="Profile"></a></li>
+        <li><a href="#settings"><img src="media/settingslogo.png" alt="Settings"></a></li>
+    </ul>
+</nav>
+
+<div class="settings">
+    <h2>ACCOUNT SETTINGS</h2>
+    <div id="s-pin-overlay" class="s-pin-overlay" style="display: none;">
+        <!-- Create S-PIN Modal -->
+        <div class="s-pin-modal" id="create-s-pin-modal">
+            <h3>CREATE YOUR S-PIN</h3>
+            <div class="pin-inputs">
+                <input type="password" maxlength="1" readonly>
+                <input type="password" maxlength="1" readonly>
+                <input type="password" maxlength="1" readonly>
+                <input type="password" maxlength="1" readonly>
+            </div>
+            <button class="confirm-btn" onclick="moveToConfirmSPIN()">Set S-PIN</button>
+        </div>
+    
+        <!-- Confirm S-PIN Modal -->
+        <div class="s-pin-modal" id="confirm-s-pin-modal" style="display: none;">
+            <h3>CONFIRM YOUR S-PIN</h3>
+            <div class="pin-inputs">
+                <input type="password" maxlength="1" readonly>
+                <input type="password" maxlength="1" readonly>
+                <input type="password" maxlength="1" readonly>
+                <input type="password" maxlength="1" readonly>
+            </div>
+            <button class="confirm-btn" onclick="confirmSPIN()">Confirm S-PIN</button>
+        </div>
+    </div>
+    
+    
+    
+
+    <div class="tabs">
+        <button class="tab active" data-tab="contact-info">Contact Info</button>
+        <button class="tab" data-tab="notifications">Notifications</button>
+        <button class="tab" data-tab="change-s-pin">Change S-PIN</button>
+        <button class="tab" data-tab="documents">Documents</button>
+    </div>
+    <div id="contact-info" class="info active">
+        <!-- Contact Info Content Here -->
+        <div class="field">
+            <label for="name">Full name</label>
+            <input type="text" id="name" value="Name Surname">
+            <!-- <button>CHANGE</button> -->
+        </div>
+        <div class="field">
+            <label for="phone">Phone number</label>
+            <input type="text" id="phone" value="123 456 789">
+            <button class="change-button" data-require-pin="true" onclick="requestPinBeforeAction('changePhone')">CHANGE</button>
+        </div>
+        <div class="field">
+            <label for="email">E-mail</label>
+            <input type="email" id="email" value="namesurname@smith.com">
+            <button class="change-button" data-require-pin="true" onclick="requestPinBeforeAction('changeEmail')">CHANGE</button>
+        </div>
+    </div>
+    <div id="notifications" class="info">
+        <h3>Notification Settings</h3>
+        <button class="edit-all-button" data-require-pin="true" onclick="requestPinBeforeAction('editNotifications')">EDIT</button>
+        <div class="setting">
+            <span>Change of limit</span>
+            <label class="switch">
+                <input type="checkbox" checked disabled>
+                <span class="slider round"></span>
+            </label>
+        </div>
+        <div class="setting">
+            <span>Transaction confirmation</span>
+            <label class="switch">
+                <input type="checkbox" disabled>
+                <span class="slider round"></span>
+            </label>
+        </div>
+        <div class="setting">
+            <span>Confirmation of high amount purchase</span>
+            <label class="switch">
+                <input type="checkbox" disabled>
+                <span class="slider round"></span>
+            </label>
+        </div>
+        <div class="setting">
+            <span>Unsuccessful payments</span>
+            <label class="switch">
+                <input type="checkbox" disabled>
+                <span class="slider round"></span>
+            </label>
+        </div>
+    </div>    
+    <div id="change-s-pin" class="info">
+        <!-- Change S-PIN Content Here -->
+       
+    </div>
+    <div id="documents" class="info">
+        <h3>Documents</h3>
+        <div class="setting">
+            <span>Data Processing</span>
+            <div class="controls">
+                <!-- <button class="change-button">CHANGE</button> -->
+                <label class="switch">
+                    <input type="checkbox" checked disabled>
+                    <span class="slider round"></span>
+                </label>
+            </div>
+        </div>
+        <div class="setting">
+            <span>Marketing communications</span>
+            <div class="controls">
+                <button class="change-button" data-require-pin="true" onclick="requestPinBeforeAction('changeMarketing')">CHANGE</button>
+                <label class="switch">
+                    <input type="checkbox" checked>
+                    <span class="slider round"></span>
+                </label>
+            </div>
+        </div>
+        <div class="setting">
+            <span>Third-party sharing</span>
+            <div class="controls">
+                <button class="change-button" data-require-pin="true" onclick="requestPinBeforeAction('changeMarketing')">CHANGE</button>
+                <label class="switch">
+                    <input type="checkbox" checked>
+                    <span class="slider round"></span>
+                </label>
+            </div>
+        </div>
+    </div>
+    
+    
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
