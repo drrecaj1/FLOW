@@ -1,6 +1,6 @@
 body {
     font-family: Arial, sans-serif;
-    background-image: url("/Users/dearr/Downloads/FLOW Application/public/media/accountbckg.png");
+    background-image: url("media/accountbckg.png");
 }
 
 
@@ -12,68 +12,68 @@ body {
     margin-top: 20px;
 }
 .sidebar {
-    background-color: #333; /* Dark background for the sidebar */
+    background-color: #333;
     color: white;
-    width: 70px; /* Set the width of the sidebar */
-    height: 90vh; /* Full-height */
+    width: 70px; 
+    height: 90vh; 
     border-radius: 28px;
     margin-left: 10px;
-    position: fixed; /* Fixed Sidebar (stay in place on scroll) */
-    overflow-x: hidden; /* Disable horizontal scroll */
-    padding-top: 20px; /* Padding at the top */
+    position: fixed; 
+    overflow-x: hidden; 
+    padding-top: 20px; 
 }
 
 .sidebar-icons {
-    list-style: none; /* Remove bullets */
+    list-style: none; 
     padding: 0;
     margin: 0;
 }
 
 
 .sidebar-icons li {
-    padding: 12px; /* Vertical & horizontal padding */
+    padding: 12px; 
 }
 
 .sidebar-icons li a {
-    display: flex; /* Centering the content */
-    justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically */
-    height: 60px; /* Fixed height for all items */
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    height: 60px; 
 }
 
 .sidebar-icons li a img {
-    transition: transform 0.3s; /* Smooth transform effect */
+    transition: transform 0.3s; 
     width: 25px;
     height: auto;
 }
 
 .sidebar-icons li:hover a img {
-    transform: scale(1.1); /* Slightly enlarge icons on hover */
+    transform: scale(1.1); 
 }
 
 .sidebar-icons li a:hover {
-    background-color: #555; /* Slightly lighter background on hover */
+    background-color: #555; 
     border-radius: 30px;
 }
 
 /* Additional styles for active or current page */
 .sidebar-icons li.active a,
 .sidebar-icons li a:focus {
-    background-color: #666; /* Active or focus state */
-    border-left: 3px solid cyan; /* Highlight effect */
+    background-color: #666; 
+    border-left: 3px solid cyan; 
 }
 .settings {
     font-family: 'Arial', sans-serif;
-    width: 100%; /* Ensure full width if needed */
-    max-width: 960px; /* Max width can be adjusted */
-    margin: 0 auto; /* Centering settings container */
-    padding: 20px; /* Padding around the content */
+    width: 100%; 
+    max-width: 960px; 
+    margin: 0 auto; 
+    padding: 20px; 
   
 }
 
 h2 {
-    text-align: left; /* Center the heading */
-    margin-bottom: 10px; /* Space below the heading */
+    text-align: left;
+    margin-bottom: 10px; 
     font-size: 30px;
 
 }
@@ -81,8 +81,8 @@ h2 {
 
 .tabs {
     display: flex;
-    justify-content: space-around; /* Distribute space evenly around tabs */
-    margin-bottom: 20px; /* Space below tabs for separation */
+    justify-content: space-around; 
+    margin-bottom: 20px; 
 }
 
 .tab {
@@ -90,14 +90,14 @@ h2 {
     color: black;
     padding: 10px 20px;
     border-radius: 5px;
-    transition:  transform 0.3s; /* Smooth transitions for hover effects */
+    transition:  transform 0.3s; 
 }
 
 .tab:hover, .tab.active {
     background-color: #B8D8C7; 
     color: rgb(0, 0, 0);
     border-radius: 40px;
-    transform: translateY(-2px); /* Slight lift effect on hover */
+    transform: translateY(-2px); 
 }
 
 
@@ -137,14 +137,12 @@ h2 {
     margin-top: 70px;
 }
 
-/* notifications */
 
 .notification-item {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: #e6f7ff; /* Light blue background */
-    padding: 10px 20px;
+    background: #e6f7ff; 
     margin: 10px 0;
     border-radius: 5px;
 }
@@ -154,8 +152,8 @@ h2 {
     flex-grow: 1;
     margin-left: 865px;
     padding: 10px;
-    margin-bottom: 20px; /* Space between button and switches */
-    background-color:inherit; /* Green background */
+    margin-bottom: 20px; 
+    background-color:inherit; 
     border: 2px solid #4CAF50;
     color: rgb(0, 0, 0);
     cursor: pointer;
@@ -168,12 +166,12 @@ h2 {
     align-items: center;
     margin-bottom: 10px;
     padding: 10px;
-    background-color: #e6f7ff; /* Light blue background */
+    background-color: #e6f7ff; 
     border-radius: 5px;
 }
 
 .switch.active .slider {
-    background-color: #2196F3; /* Active color */
+    background-color: #2196F3; 
 }
 
 
@@ -243,7 +241,7 @@ input:checked + .slider:before {
     justify-content: space-between;
     padding: 10px;
     margin: 10px 0;
-    background-color: #e6f7ff; /* Light blue background */
+    background-color: #e6f7ff; 
     border-radius: 5px;
 }
 
@@ -256,17 +254,17 @@ input:checked + .slider:before {
     display: flex;
     margin-top: 20px;
     align-items: center;
-    gap: 10px; /* Adjust spacing between button and switch */
+    gap: 10px; 
 }
 
 .change-button {
     padding: 5px 15px;
-    background-color: inherit; /* Green button */
+    background-color: inherit; 
     border: 1px solid #4CAF50;
     color: black;
     border-radius: 100px;
     cursor: pointer;
-    font-size: 14px; /* Adjust font size as needed */
+    font-size: 14px; 
 }
 .switch {
     position: relative;
@@ -287,7 +285,7 @@ input:checked + .slider:before {
     bottom: 0;
     left: 0;
     right: 0;
-    background-color: #ccc; /* Default background */
+    background-color: #ccc; 
     transition: .4s;
     border-radius: 34px;
 }
@@ -305,19 +303,19 @@ input:checked + .slider:before {
 }
 
 input:checked + .slider {
-    background-color: #B8D8C7; /* Blue background for 'on' state */
+    background-color: #B8D8C7; 
 }
 
 input:checked + .slider:before {
-    transform: translateX(26px); /* Move the toggle button to the right */
+    transform: translateX(26px); 
 }
 
 input:disabled + .slider {
-    background-color: #ddd; /* Light grey background when disabled */
+    background-color: #ddd; 
 }
 
 input:checked:disabled + .slider {
-    background-color: #B8D8C7; /* Keep the blue background even when disabled */
+    background-color: #B8D8C7; 
 }
 .account-settings {
     position: relative;
@@ -332,7 +330,7 @@ input:checked:disabled + .slider {
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 1000; /* Ensure it's on top of other content */
+    z-index: 1000; 
 }
 
 .s-pin-modal {
