@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/account.css">
     <title>Account Settings</title>
+    <style>
+        .hidden {
+            display: none;
+        }
+    </style>
 </head>
 <body>
 
@@ -13,7 +18,8 @@
     <ul class="sidebar-icons">
         <li><a href="index.html"><img src="media/homelogo.png" alt="Home"></a></li>
         <li><a href="#profile"><img src="media/profilelogo.png" alt="Profile"></a></li>
-        <li><a href="#settings"><img src="media/settingslogo.png" alt="Settings"></a></li>
+        <li><a href="#" id="settings-link"><img src="media/settingslogo.png" alt="Settings"></a></li>
+        <li><a href="#loans" id="loans-link"><img src="media/pnghero_money-logo-download.png" alt="Loans"></a></li>
     </ul>
 </nav>
 
@@ -141,9 +147,88 @@
             </div>
         </div>
     </div>
+
+
+
     
     
 </div>
+
+
+
+<div id="loans" class="loans hidden">
+    <h3>Loans</h3>
+    <div class="loan-overview">
+        <h4>Loan Summary</h4>
+        <p>Total Loan Amount: $10,000</p>
+        <p>Remaining Balance: $8,500</p>
+        <p>Interest Rate: 5%</p>
+        <p>Next Payment Due: 2024-06-01</p>
+    </div>
+
+    <!-- Apply for a New Loan Section -->
+    <div class="apply-loan">
+        <h4>Apply for a New Loan</h4>
+        <form id="loan-application-form">
+            <div class="field">
+                <label for="loan-amount">Loan Amount</label>
+                <input type="number" id="loan-amount" required>
+            </div>
+            <div class="field">
+                <label for="loan-purpose">Loan Purpose</label>
+                <input type="text" id="loan-purpose" required>
+            </div>
+            <div class="field">
+                <label for="loan-term">Loan Term (months)</label>
+                <input type="number" id="loan-term" required>
+            </div>
+            <div class="field">
+                <label for="interest-rate">Interest Rate</label>
+                <input type="number" id="interest-rate" required>
+            </div>
+            <button type="submit">Apply</button>
+        </form>
+    </div>
+
+    <!-- Manage Existing Loans Section -->
+    <div class="manage-loans">
+        <h4>Manage Existing Loans</h4>
+        <div class="loan-details">
+            <h5>Loan 1</h5>
+            <p>Loan Amount: $5,000</p>
+            <p>Remaining Balance: $3,500</p>
+            <p>Interest Rate: 4%</p>
+            <p>Next Payment Due: 2024-06-01</p>
+            <button onclick="makePayment()">Make a Payment</button>
+            <button onclick="earlyRepayment()">Early Repayment</button>
+        </div>
+    </div>
+
+    <!-- Notifications and Alerts Section -->
+    <div class="loan-notifications">
+        <h4>Notifications and Alerts</h4>
+        <p>Set up and manage reminders for upcoming payments and rate change alerts.</p>
+        <button onclick="setupNotifications()">Setup Notifications</button>
+    </div>
+
+    <!-- Customer Support Section -->
+    <div class="loan-support">
+        <h4>Customer Support</h4>
+        <p>Need help with your loan? Contact our support team.</p>
+        <button onclick="contactSupport()">Contact Support</button>
+    </div>
+
+    <!-- Additional Resources Section -->
+    <div class="loan-resources">
+        <h4>Additional Resources</h4>
+        <p>Explore our articles and tools on managing loans and personal finances.</p>
+        <button onclick="viewResources()">View Resources</button>
+    </div>
+</div>
+
+
+
+
 
 <script src="app.js"></script>
 </body>
