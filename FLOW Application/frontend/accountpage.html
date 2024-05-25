@@ -231,5 +231,24 @@
 
 
 <script src="app.js"></script>
+<script> 
+document.addEventListener('DOMContentLoaded', function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const userId = urlParams.get('user_id');
+
+    fetch(`/api/user/${userId}`)
+      .then(response => response.json())
+      .then(data => {
+        if (data.message) {
+          alert(data.message);
+        } else {
+          document.getElementById('user-details').innerText = `${data.full_name} (${data.email})`;
+        }
+      })
+      .catch(error => {
+        console.error('Error fetching user data:', error);
+      });
+  });
+  </script>
 </body>
 </html>
