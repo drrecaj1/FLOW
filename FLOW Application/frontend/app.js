@@ -1,5 +1,3 @@
-
-
 document.addEventListener('DOMContentLoaded', function() {
   console.log("DOM fully loaded");
 
@@ -45,9 +43,73 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 
+  // Login form submission logic
+  const loginForm = document.getElementById('loginForm');
 
+  loginForm.addEventListener('submit', async function(event) {
+    event.preventDefault();
 
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+
+    try {
+      const response = await fetch('/api/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ email, password })
+      });
+
+      if (response.ok) {
+        const result = await response.json();
+        window.location.href = `/account?user_id=${result.user_id}`;
+      } else {
+        const result = await response.json();
+        alert(result.message);
+      }
+    } catch (error) {
+      console.error('Error logging in:', error);
+      alert('An error occurred. Please try again.');
+    }
+  });
 });
+
+  
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Email verification popup logic
+    const urlParams = new URLSearchParams(window.location.search);
+    const isVerified = urlParams.get('verified');
+
+    if (isVerified === 'true') {
+        const verificationPopup = document.getElementById('verificationPopup');
+        const loginLink = document.getElementById('loginLink');
+        const loginPopup = document.getElementById('loginPopup');
+        const closeBtn = verificationPopup.querySelector('.close');
+
+        // Show the verification popup
+        verificationPopup.style.display = 'block';
+        console.log("Verification popup displayed");
+
+        // When the user clicks on the login link, open the login popup
+        loginLink.addEventListener('click', function(event) {
+            event.preventDefault();
+            verificationPopup.style.display = 'none';
+            loginPopup.style.display = 'block';
+        });
+
+        // When the user clicks on close button, hide the verification popup
+        closeBtn.addEventListener('click', function() {
+            verificationPopup.style.display = 'none';
+        });
+    }
+});
+
+
+
+
 
 
 
@@ -294,56 +356,87 @@ function moveToConfirmSPIN() {
 
 
 
+document.getElementById('loans-link').addEventListener('click', function(event) {
+    event.preventDefault();
+    document.querySelector('.settings').classList.add('hidden');
+    document.getElementById('loans').classList.remove('hidden');
+    document.body.style.backgroundImage = "url('/Users/dearr/Downloads/FLOW Application 2/frontend/media/servicesbckg.png')"; // Set the loans background
+});
+
+document.getElementById('settings-link').addEventListener('click', function(event) {
+    event.preventDefault();
+    document.querySelector('.settings').classList.remove('hidden');
+    document.getElementById('loans').classList.add('hidden');
+
+});
+
+
 
 document.addEventListener('DOMContentLoaded', function () {
-  const form = document.querySelector('.registerForm');
+    const form = document.querySelector('.registerForm');
+    const modal = document.getElementById('myModal');
+    const closeBtn = document.querySelector('.modal-content .close');
+    
+    if (form) {
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            console.log('Form submission captured');
   
-  if (form) {
-      form.addEventListener('submit', function (e) {
-          e.preventDefault();
-          console.log('Form submission captured');
-
-          const fullName = document.getElementById('full-name').value;
-          const email = document.getElementById('email').value;
-          const password = document.getElementById('password').value;
-          const confirmPassword = document.getElementById('confirm-password').value;
-          const termsAccepted = document.getElementById('terms').checked;
-
-          console.log('Form data:', { fullName, email, password, confirmPassword, termsAccepted });
-
-          // Perform password match validation
-          if (password !== confirmPassword) {
-              document.getElementById('match-error').classList.remove('hidden');
-              return;
-          }
-
-          document.getElementById('match-error').classList.add('hidden');
-
-          fetch('/api/register', {
-              method: 'POST',
-              headers: {
-                  'Content-Type': 'application/json'
-              },
-              body: JSON.stringify({ fullName, email, password })
-          })
-          .then(response => {
-              console.log('Response status:', response.status);
-              return response.json();
-          })
-          .then(data => {
-              console.log('Response data:', data);
-              alert(data.message);
-
-              // Show modal if registration is successful
-              if (response.status === 200) {
-                  document.getElementById('myModal').classList.remove('hidden');
-              }
-          })
-          .catch(error => {
-              console.error('Error:', error);
-          });
-      });
-  } else {
-      console.error('Form not found');
-  }
-});
+            const full_name = document.getElementById('full-name').value; // Use full_name here
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+            const termsAccepted = document.getElementById('terms').checked;
+  
+            console.log('Form data:', { full_name, email, password, confirmPassword, termsAccepted });
+  
+            // Perform password match validation
+            if (password !== confirmPassword) {
+                document.getElementById('match-error').classList.remove('hidden');
+                return;
+            }
+  
+            document.getElementById('match-error').classList.add('hidden');
+  
+            const payload = { full_name, email, password }; // Use full_name here
+            console.log('Payload to be sent:', payload);
+  
+            fetch('/api/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(payload) // Use full_name here
+            })
+            .then(response => {
+                console.log('Response status:', response.status);
+                return response.json();
+            })
+            .then(data => {
+                console.log('Response data:', data);
+                alert(data.message);
+  
+                // Show modal if registration is successful
+                if (data.message === 'User registered successfully') {
+                    const confirmationMessage = document.getElementById('confirmationMessage');
+                    confirmationMessage.textContent = `We have sent you a confirmation link to ${email}. Proceed with the link to the log in page. Wait for your Client ID afterwards.`;
+                    modal.classList.remove('hidden');
+                    modal.style.display = 'block';
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        });
+    } else {
+        console.error('Form not found');
+    }
+  
+    if (closeBtn) {
+        closeBtn.addEventListener('click', function () {
+            modal.classList.add('hidden');
+            modal.style.display = 'none';
+        });
+    }
+  });
+  
