@@ -5,18 +5,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src='https://api.mapbox.com/mapbox-gl-js/v2.4.1/mapbox-gl.js'></script>
-  <link href="https://api.mapbox.com/mapbox-gl-js/v2.4.1/mapbox-gl.css" rel="stylesheet">
   <link rel="stylesheet" href="css/main.css">
-
   <title>FLOW E-BANK</title>
-
 </head>
 <body>
-
-
 <header>
-
-
   <nav>
     <div id="hamburger" class="x">
       <span></span>
@@ -33,19 +26,25 @@
       <li><a href="#register">Register</a></li>
       <li><a href="#contact">Contact</a></li>
       <li><a href="#login">Log in</a></li>
-  
     </ul>
   </nav>
-  
-    <h1 id="first-title">
-      <span class="title-main">The Future</span><br>
-      <span class="title-middle">Of</span><br>
-      <span class="title-sub"> E-BANKING</span>
-    </h1>
-
-  
-
+  <h1 id="first-title">
+    <span class="title-main">The Future</span><br>
+    <span class="title-middle">Of</span><br>
+    <span class="title-sub"> E-BANKING</span>
+  </h1>
 </header>
+
+
+<!-- Verification Popup HTML -->
+<div id="verificationPopup" class="verification-popup" style="display: none;">
+  <div class="verification-content">
+      <span class="close">&times;</span>
+      <h2>Email verified successfully</h2>
+      <p>Your email has been verified. You can now <a href="#login" id="loginLink">log in</a>.</p>
+  </div>
+</div>
+
 
 
 <!-- Login Popup HTML -->
@@ -56,10 +55,8 @@
     <form id="loginForm">
       <label for="email">E-mail:</label>
       <input type="email" id="email" name="email" required>
-
       <label for="password">Password:</label>
       <input type="password" id="password" name="password" required>
-
       <a href="#" class="forgot-password">Forgot Password?</a>
       <button type="submit">Log In</button>
     </form>
@@ -67,17 +64,14 @@
 </div>
 
 
-
-
-  <section id="about">
-    <div class="title-container">
-      <hr class="side-line">
-      <h2>Who are we ?</h2>
-      <hr class="side-line">
-    </div>    
-    <p>Flow is a digital-first bank that's revolutionizing the way you manage your finances. Founded with a mission to simplify banking, we harness the power of technology to offer seamless, secure, and user-friendly financial solutions. At Flow, we believe that managing your money should be effortless and transparent, allowing you to focus on what matters most. Our innovative platform combines cutting-edge technology with personalized customer service, making banking accessible anytime, anywhere. </p>
-  </section>
-
+<section id="about">
+  <div class="title-container">
+    <hr class="side-line">
+    <h2>Who are we ?</h2>
+    <hr class="side-line">
+  </div>    
+  <p>Flow is a digital-first bank that's revolutionizing the way you manage your finances. Founded with a mission to simplify banking, we harness the power of technology to offer seamless, secure, and user-friendly financial solutions. At Flow, we believe that managing your money should be effortless and transparent, allowing you to focus on what matters most. Our innovative platform combines cutting-edge technology with personalized customer service, making banking accessible anytime, anywhere. </p>
+</section>
 
 <section id="services">
   <div class="title-container">
@@ -107,10 +101,8 @@
   <h3>Credit and Lending Services</h3>
   <p>Understanding the diverse needs of our customers, this platform offers a variety of credit and lending services designed to provide financial flexibility. This includes personal loans, home mortgages, auto financing, and lines of credit, all with competitive rates and terms. Our streamlined application process and quick decision-making ensure that customers can access the funds they need when they need them, helping them to realize their dreams without unnecessary delays.</p>
 </div>
- 
 </div>
 </section>
-
 
 <section id="register">
   <div class="module-border-wrap">
@@ -124,36 +116,30 @@
   </div>
 </section>
 
+<footer id="contact">
+  <div class="left-section">
+   <div class="text">
+     <h3 class="footer-title">Any questions?</h3>
+     <p>Phone: <a href="tel:+420123456789 "> (+420) 123 456 789 </a></p>
+     <p>E-mail: <a href="mailto:filan@fisteku.com">filan@fisteku.com</a></p>
+  </div>
 
-
-  
-
-  <footer id="contact">
-    <div class="left-section">
-     <div class="text">
-       <h3 class="footer-title">Any questions?</h3>
-       <p>Phone: <a href="tel:+420123456789 "> (+420) 123 456 789 </a></p>
-       <p>E-mail: <a href="mailto:filan@fisteku.com">filan@fisteku.com</a></p>
-      
-  
-    <div class="right-section">
-       <p>1234, Filan Fisteku Ave.<br>
-        Prague City,<br>
-       Lorem Ipsum 12345</p>
-       <div class="social-icons">
-        <div class="icon"></div>
-        <div class="icon"></div>
-        <div class="icon"></div>
-      </div>
+  <div class="right-section">
+     <p>1234, Filan Fisteku Ave.<br>
+      Prague City,<br>
+     Lorem Ipsum 12345</p>
+     <div class="social-icons">
+      <div class="icon"></div>
+      <div class="icon"></div>
+      <div class="icon"></div>
     </div>
+  </div>
+  <div id="logo"> 
+    <a href=""> <img src="/media/flowlogo.png" alt=""></a>
+ </div>
+</footer>
 
-    <div id="logo"> 
-      <a href=""> <img src="/media/flowlogo.png" alt=""></a>
-   </div>
- </footer>
-
-
- <div id="cookieConsentPopup" class="cookie-consent-popup" style="display: none;">
+<div id="cookieConsentPopup" class="cookie-consent-popup" style="display: none;">
   <div class="cookie-consent-content">
     <p>We use cookies and other tracking technologies to offer you a better experience, personalize content and ads, enable social media functionality, and to analyze our performance and site traffic. By proceeding, you understand your information may be disclosed to our third party partners. You can read more about our privacy policy by clicking <a href="privacypolicy.html">this link</a>.</p>
     <div class="cookie-consent-buttons">
@@ -163,11 +149,7 @@
   </div>
 </div>
 
-
-
-
-
 <script src="app.js" defer></script>
-
 </body>
 </html>
+
