@@ -8,6 +8,8 @@ const { DAO } = require("../dao/DAO");
 const{ Pool } = require('pg')
 const { body, validationResult } = require('express-validator');
 const bcrypt = require('bcrypt');
+const moment = require('moment-timezone');
+
 // const axios = require('axios');
 
 const app = express();
@@ -55,12 +57,15 @@ app.get('/account', (req, res) => {
     res.sendFile(path.join(__dirname, '..', 'frontend', 'accountpage.html'));
 });
 
+app.get('/reset-password', (req, res) => {
+    res.sendFile(path.join(__dirname, '..', 'frontend', 'forgotpassword.html'));
+});
+
+
 
 // Endpoint to handle registration and email verification
 app.post('/api/register', async (req, res) => {
     const { email, password, full_name } = req.body;
-
-
 
     console.log('Received registration data:', req.body); // This will help you see what data is received
 
@@ -184,7 +189,6 @@ async function sendVerificationEmail(email, token) {
 }
 
 
-
 app.get('/api/user/:user_id', async (req, res) => {
     const userId = req.params.user_id;
 
@@ -206,6 +210,7 @@ app.get('/api/user/:user_id', async (req, res) => {
     }
 });
 
+
 app.post('/api/login', async (req, res) => {
     const { email, password } = req.body;
 
@@ -216,6 +221,7 @@ app.post('/api/login', async (req, res) => {
         );
 
         if (userResult.rows.length === 0) {
+            console.error(`Login failed. Email not found: ${email}`);
             return res.status(400).json({ message: 'Invalid credentials' });
         }
 
@@ -223,15 +229,147 @@ app.post('/api/login', async (req, res) => {
         const isMatch = await bcrypt.compare(password, user.password_hash);
 
         if (!isMatch) {
+            console.error(`Login failed. Password mismatch for email: ${email}`);
             return res.status(400).json({ message: 'Invalid credentials' });
         }
 
+        console.log(`Login successful for user_id: ${user.user_id}`);
         res.json({ user_id: user.user_id });
     } catch (error) {
         console.error('Error logging in:', error);
         res.status(500).json({ message: 'Internal server error' });
     }
 });
+
+
+
+
+// Endpoint to handle forgot-password
+app.post('/api/forgot-password', async (req, res) => {
+    const { email } = req.body;
+
+    try {
+        const userResult = await pool.query(
+            'SELECT user_id FROM USERS WHERE email = $1',
+            [email]
+        );
+
+        if (userResult.rows.length === 0) {
+            console.error('Email not found:', email);
+            return res.status(400).json({ message: 'Email not found' });
+        }
+
+        const user = userResult.rows[0];
+        console.log(`Retrieved user: ${JSON.stringify(user)}`);
+
+        const token = crypto.randomBytes(20).toString('hex');
+
+        // Set token expiration time (1 hour from now) in local time (CEST)
+        const tokenExpiresAt = moment().tz('Europe/Prague').add(1, 'hour').format('YYYY-MM-DD HH:mm:ss');
+        console.log(`Generated token: ${token}`);
+        console.log(`Token expires at (local time): ${tokenExpiresAt}`);
+
+        const updateQuery = `
+            UPDATE USERS 
+            SET password_reset_token = $1, password_reset_token_expires = $2 
+            WHERE user_id = $3 
+            RETURNING password_reset_token, password_reset_token_expires`;
+        const updateValues = [token, tokenExpiresAt, user.user_id];
+
+        console.log(`Executing query: ${updateQuery} with values ${JSON.stringify(updateValues)}`);
+
+        const updateResult = await pool.query(updateQuery, updateValues);
+
+        console.log(`Update result: ${JSON.stringify(updateResult.rows)}`);
+
+        if (updateResult.rowCount === 0) {
+            console.error('Failed to update the user with reset token');
+            return res.status(500).json({ message: 'Failed to update the user with reset token' });
+        }
+
+        const resetLink = `http://localhost:${PORT}/reset-password?token=${token}`;
+
+        // Send email with the reset link
+        let transporter = nodemailer.createTransport({
+            host: 'smtp.gmail.com',
+            port: 587,
+            secure: false,
+            auth: {
+                user: 'asarekenny59@gmail.com',
+                pass: 'iutynnhnhofubisy',
+            },
+        });
+
+        let info = await transporter.sendMail({
+            from: '"Flow Application" <flowbankapplication@gmail.com>',
+            to: email,
+            subject: 'Password Reset',
+            text: `Click the following link to reset your password: ${resetLink}`,
+        });
+
+        console.log('Password reset email sent:', info.messageId);
+        res.json({ message: 'Password reset email sent' });
+    } catch (error) {
+        console.error('Error handling forgot password:', error.message);
+        console.error('Stack trace:', error.stack);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+});
+
+// Endpoint to handle reset-password
+app.post('/api/reset-password', async (req, res) => {
+    const { token, password } = req.body;
+  
+    try {
+      const tokenResult = await pool.query(
+        'SELECT user_id, password_reset_token_expires FROM USERS WHERE password_reset_token = $1',
+        [token]
+      );
+  
+      if (tokenResult.rows.length === 0) {
+        return res.status(400).json({ message: 'Invalid or expired token' });
+      }
+  
+      const tokenData = tokenResult.rows[0];
+      const tokenExpiresAt = moment.tz(tokenData.password_reset_token_expires, 'Europe/Prague').format('YYYY-MM-DD HH:mm:ss');
+      const currentTime = moment().tz('Europe/Prague').format('YYYY-MM-DD HH:mm:ss');
+  
+      console.log(`Token expiration time from DB (local time): ${tokenExpiresAt}`);
+      console.log(`Current time (local time): ${currentTime}`);
+  
+      if (moment(currentTime).isAfter(tokenExpiresAt)) {
+        return res.status(400).json({ message: 'Token has expired' });
+      }
+  
+      const hashedPassword = await bcrypt.hash(password, 10);
+  
+      const updateQuery = `
+        UPDATE USERS 
+        SET password_hash = $1, password_reset_token = NULL, password_reset_token_expires = NULL 
+        WHERE user_id = $2 
+        RETURNING password_hash, password_reset_token, password_reset_token_expires`;
+      const updateValues = [hashedPassword, tokenData.user_id];
+  
+      console.log(`Executing query: ${updateQuery} with values ${JSON.stringify(updateValues)}`);
+  
+      const updateResult = await pool.query(updateQuery, updateValues);
+  
+      console.log(`Password reset update result: ${JSON.stringify(updateResult.rows)}`);
+  
+      if (updateResult.rowCount === 0) {
+        console.error('Failed to update the user password');
+        return res.status(500).json({ message: 'Failed to update the user password' });
+      }
+  
+      res.json({
+        message: 'Password has been reset successfully. Please continue to <a href="/index.html">log in</a>.',
+      });
+    } catch (error) {
+      console.error('Error resetting password:', error);
+      res.status(500).json({ message: 'Internal server error' });
+    }
+  });
+  
 
 
 // Start server
