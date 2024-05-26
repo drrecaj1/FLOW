@@ -1,80 +1,110 @@
 document.addEventListener('DOMContentLoaded', function() {
-  console.log("DOM fully loaded");
-
-  // Cookie consent popup logic
-  var consent = localStorage.getItem('cookieConsent');
-  console.log("Cookie consent retrieved:", consent);
-  if (consent !== 'given') {
-    document.getElementById('cookieConsentPopup').style.display = 'block';
-  }
-
-  document.getElementById('acceptCookies').onclick = function() {
-    localStorage.setItem('cookieConsent', 'given');
-    document.getElementById('cookieConsentPopup').style.display = 'none';
-    console.log("Cookies accepted");
-  };
-
-  document.getElementById('declineCookies').onclick = function() {
-    localStorage.setItem('cookieConsent', 'declined');
-    document.getElementById('cookieConsentPopup').style.display = 'none';
-    console.log("Cookies declined");
-  };
-
-  // Login popup logic
-  var loginPopup = document.getElementById('loginPopup');
-  var loginLink = document.querySelector('a[href="#login"]');
-  var closeBtn = document.querySelector('.login-popup .close');
-
-  loginLink.addEventListener('click', function(event) {
-    event.preventDefault();
-    loginPopup.style.display = 'block';
-    console.log("Login popup displayed");
-  });
-
-  closeBtn.addEventListener('click', function() {
-    loginPopup.style.display = 'none';
-    console.log("Login popup closed");
-  });
-
-  window.addEventListener('click', function(event) {
-    if (event.target === loginPopup) {
+    console.log("DOM fully loaded");
+  
+    // Cookie consent popup logic
+    var consent = localStorage.getItem('cookieConsent');
+    console.log("Cookie consent retrieved:", consent);
+    if (consent !== 'given') {
+      document.getElementById('cookieConsentPopup').style.display = 'block';
+    }
+  
+    document.getElementById('acceptCookies').onclick = function() {
+      localStorage.setItem('cookieConsent', 'given');
+      document.getElementById('cookieConsentPopup').style.display = 'none';
+      console.log("Cookies accepted");
+    };
+  
+    document.getElementById('declineCookies').onclick = function() {
+      localStorage.setItem('cookieConsent', 'declined');
+      document.getElementById('cookieConsentPopup').style.display = 'none';
+      console.log("Cookies declined");
+    };
+  
+    // Login popup logic
+    var loginPopup = document.getElementById('loginPopup');
+    var loginLink = document.querySelector('a[href="#login"]');
+    var closeBtn = document.querySelector('.login-popup .close');
+  
+    loginLink.addEventListener('click', function(event) {
+      event.preventDefault();
+      loginPopup.style.display = 'block';
+      console.log("Login popup displayed");
+    });
+  
+    closeBtn.addEventListener('click', function() {
       loginPopup.style.display = 'none';
-      console.log("Login popup closed via outside click");
-    }
-  });
-
-  // Login form submission logic
-  const loginForm = document.getElementById('loginForm');
-
-  loginForm.addEventListener('submit', async function(event) {
-    event.preventDefault();
-
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
-
-    try {
-      const response = await fetch('/api/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ email, password })
-      });
-
-      if (response.ok) {
-        const result = await response.json();
-        window.location.href = `/account?user_id=${result.user_id}`;
-      } else {
-        const result = await response.json();
-        alert(result.message);
+      console.log("Login popup closed");
+    });
+  
+    window.addEventListener('click', function(event) {
+      if (event.target === loginPopup) {
+        loginPopup.style.display = 'none';
+        console.log("Login popup closed via outside click");
       }
-    } catch (error) {
-      console.error('Error logging in:', error);
-      alert('An error occurred. Please try again.');
-    }
-  });
-});
+    });
+  
+    // Login form submission logic
+    const loginForm = document.getElementById('loginForm');
+  
+    loginForm.addEventListener('submit', async function(event) {
+      event.preventDefault();
+  
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+  
+      try {
+        const response = await fetch('/api/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ email, password })
+        });
+  
+        if (response.ok) {
+          const result = await response.json();
+          window.location.href = `/account?user_id=${result.user_id}`;
+        } else {
+          const result = await response.json();
+          alert(result.message);
+        }
+      } catch (error) {
+        console.error('Error logging in:', error);
+        alert('An error occurred. Please try again.');
+      }
+    });
 
+    handleForgotPasswordForm();
+
+  });
+  
+  
+  function handleForgotPasswordForm() {
+    const forgotPasswordLink = document.querySelector('.forgot-password');
+
+    forgotPasswordLink.addEventListener('click', function(event) {
+        event.preventDefault();
+
+        const email = prompt('Please enter your email:');
+        if (email) {
+            fetch('/api/forgot-password', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ email })
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.message);
+            })
+            .catch(error => {
+                console.error('Error sending password reset email:', error);
+                alert('An error occurred. Please try again.');
+            });
+        }
+    });
+}
   
 
 
