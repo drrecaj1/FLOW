@@ -140,74 +140,71 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-
-
-
 document.addEventListener('DOMContentLoaded', function () {
-  const form = document.querySelector('.registerForm');
-  const modal = document.getElementById('myModal');
-  const closeBtn = document.querySelector('.modal-content .close');
+    const form = document.querySelector('.registerForm');
+    const modal = document.getElementById('myModal');
+    const closeBtn = document.querySelector('.modal-content .close');
+    
+    if (form) {
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            console.log('Form submission captured');
   
-  if (form) {
-      form.addEventListener('submit', function (e) {
-          e.preventDefault();
-          console.log('Form submission captured');
-
-          const fullName = document.getElementById('full-name').value;
-          const email = document.getElementById('email').value;
-          const password = document.getElementById('password').value;
-          const confirmPassword = document.getElementById('confirm-password').value;
-          const termsAccepted = document.getElementById('terms').checked;
-
-          console.log('Form data:', { fullName, email, password, confirmPassword, termsAccepted });
-
-          // Perform password match validation
-          if (password !== confirmPassword) {
-              document.getElementById('match-error').classList.remove('hidden');
-              return;
-          }
-
-          document.getElementById('match-error').classList.add('hidden');
-
-          fetch('/api/register', {
-              method: 'POST',
-              headers: {
-                  'Content-Type': 'application/json'
-              },
-              body: JSON.stringify({ fullName, email, password })
-          })
-          .then(response => {
-              console.log('Response status:', response.status);
-              return response.json();
-          })
-          .then(data => {
-              console.log('Response data:', data);
-              alert(data.message);
-
-              // Show modal if registration is successful
-              if (data.message === 'User registered successfully') {
-                  const confirmationMessage = document.getElementById('confirmationMessage');
-                  confirmationMessage.textContent = `We have sent you a confirmation link to ${email}. Proceed with the link to the log in page. Wait for your Client ID afterwards.`;
-                  modal.classList.remove('hidden');
-                  modal.style.display = 'block';
-              }
-          })
-          .catch(error => {
-              console.error('Error:', error);
-          });
-      });
-  } else {
-      console.error('Form not found');
-  }
-
-  if (closeBtn) {
-      closeBtn.addEventListener('click', function () {
-          modal.classList.add('hidden');
-          modal.style.display = 'none';
-      });
-  }
-});
-
+            const fullName = document.getElementById('full-name').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+            const termsAccepted = document.getElementById('terms').checked;
+  
+            console.log('Form data:', { fullName, email, password, confirmPassword, termsAccepted });
+  
+            // Perform password match validation
+            if (password !== confirmPassword) {
+                document.getElementById('match-error').classList.remove('hidden');
+                return;
+            }
+  
+            document.getElementById('match-error').classList.add('hidden');
+  
+            fetch('/api/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ full_name: fullName, email, password }) // Use full_name instead of fullName
+            })
+            .then(response => {
+                console.log('Response status:', response.status);
+                return response.json();
+            })
+            .then(data => {
+                console.log('Response data:', data);
+                alert(data.message);
+  
+                // Show modal if registration is successful
+                if (data.message === 'User registered successfully. Check your email for verification instructions.') {
+                    const confirmationMessage = document.getElementById('confirmationMessage');
+                    confirmationMessage.textContent = `We have sent you a confirmation link to ${email}. Proceed with the link to the log in page. Wait for your Client ID afterwards.`;
+                    modal.classList.remove('hidden');
+                    modal.style.display = 'block';
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        });
+    } else {
+        console.error('Form not found');
+    }
+  
+    if (closeBtn) {
+        closeBtn.addEventListener('click', function () {
+            modal.classList.add('hidden');
+            modal.style.display = 'none';
+        });
+    }
+  });
+  
 
 
 
@@ -390,7 +387,7 @@ document.getElementById('loans-link').addEventListener('click', function(event) 
     event.preventDefault();
     document.querySelector('.settings').classList.add('hidden');
     document.getElementById('loans').classList.remove('hidden');
-    document.body.style.backgroundImage = "url('/Users/dearr/Downloads/FLOW Application 2/frontend/media/servicesbckg.png')"; // Set the loans background
+    document.body.style.backgroundImage = "url('media/servicesbckg.png')"; // Set the loans background
 });
 
 document.getElementById('settings-link').addEventListener('click', function(event) {
@@ -469,4 +466,5 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
   });
+  
   
