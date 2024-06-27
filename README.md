@@ -1,6 +1,6 @@
 # FLOW Application 
 ## Overview
-The FLOW Application is designed  for the secure application development class for which the team created an e-bankinh application and implemented security measures . This README file provides instructions on how to set up, run, and contribute to the project.
+The FLOW Application is designed  for the secure application development class for which our team created an e-banking application and implemented security measures . This README file provides instructions on how to set up, run, and contribute to the project.
 
 ## Project Structure
 The project is organized into the following main directories:
